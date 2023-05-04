@@ -11,7 +11,12 @@
     <ApplicationDefaultFont>Segoe UI, 9pt</ApplicationDefaultFont>
     <ImplicitUsings>enable</ImplicitUsings>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <RuntimeHostConfigurationOption Include="System.Globalization.Invariant" Value="true" />
