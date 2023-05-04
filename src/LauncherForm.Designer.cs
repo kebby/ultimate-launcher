@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherForm));
             bSelectDir = new Button();
             lDirectory = new Label();
             tbDirectory = new TextBox();
@@ -130,10 +131,11 @@
             Controls.Add(lDirectory);
             Controls.Add(bSelectDir);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "LauncherForm";
             SizeGripStyle = SizeGripStyle.Hide;
-            Text = "Ultimate-II+ Launcher";
+            Text = "Ultimate Launcher";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

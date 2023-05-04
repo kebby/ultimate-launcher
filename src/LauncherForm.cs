@@ -54,7 +54,7 @@ namespace UltiLaunch2
             if (String.IsNullOrEmpty(ult.hostName))
                 lHostname.Text = "Host name not configured";
             else
-                lHostname.Text = $"{ult.hostName}";
+                lHostname.Text = $"Using Ultimate @ {ult.hostName}:{ult.port}";
         }
 
         protected override void OnClosed(EventArgs e)

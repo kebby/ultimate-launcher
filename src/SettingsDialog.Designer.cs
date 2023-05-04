@@ -39,13 +39,13 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(81, 20);
+            label1.Size = new Size(192, 20);
             label1.TabIndex = 0;
-            label1.Text = "Host name";
+            label1.Text = "Ultimate hostname/address";
             // 
             // tbHostName
             // 
-            tbHostName.Location = new Point(99, 6);
+            tbHostName.Location = new Point(210, 6);
             tbHostName.Name = "tbHostName";
             tbHostName.Size = new Size(217, 27);
             tbHostName.TabIndex = 1;
@@ -53,7 +53,7 @@
             // bOk
             // 
             bOk.DialogResult = DialogResult.OK;
-            bOk.Location = new Point(222, 39);
+            bOk.Location = new Point(333, 39);
             bOk.Name = "bOk";
             bOk.Size = new Size(94, 29);
             bOk.TabIndex = 2;
@@ -63,7 +63,7 @@
             // bCancel
             // 
             bCancel.DialogResult = DialogResult.Cancel;
-            bCancel.Location = new Point(122, 39);
+            bCancel.Location = new Point(233, 39);
             bCancel.Name = "bCancel";
             bCancel.Size = new Size(94, 29);
             bCancel.TabIndex = 3;
@@ -75,7 +75,7 @@
             AcceptButton = bOk;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(326, 79);
+            ClientSize = new Size(435, 79);
             Controls.Add(bCancel);
             Controls.Add(bOk);
             Controls.Add(tbHostName);
