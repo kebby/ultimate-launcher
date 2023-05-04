@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "UltiLaunch2": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\temp\\eod"
+    }
+  }
+}
