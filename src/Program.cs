@@ -1,5 +1,9 @@
+using System;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace UltiLaunch2
 {
@@ -24,8 +28,13 @@ namespace UltiLaunch2
         [STAThread]
         static void Main(string[] args)
         {
-            Process current = Process.GetCurrentProcess();            
-            var other = Process.GetProcessesByName(current.ProcessName).FirstOrDefault(p => p.Id != current.Id);
+            bool IsRunningOnMono = (Type.GetType("Mono.Runtime") != null);
+            Process other = null;
+            if (!IsRunningOnMono)
+            {
+                Process current = Process.GetCurrentProcess();
+                other = Process.GetProcessesByName(current.ProcessName).FirstOrDefault(p => p.Id != current.Id);
+            }
 
             if (other != null)
             {
@@ -47,7 +56,13 @@ namespace UltiLaunch2
             {
                 // To customize application configuration such as set high DPI settings or default font,
                 // see https://aka.ms/applicationconfiguration.
+                //ApplicationConfiguration.Initialize();
+#if NETCOREAPP
                 ApplicationConfiguration.Initialize();
+#else
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+#endif
                 Application.Run(new LauncherForm(args));
             }
 

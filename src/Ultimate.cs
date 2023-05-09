@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.IO;
+using System.Net;
 using System.Net.Sockets;
 
 namespace UltiLaunch2
@@ -46,7 +49,7 @@ namespace UltiLaunch2
 
         void Send(Command cmd, byte[] payload = null)        
         { 
-            payload ??= Array.Empty<byte>();
+            payload = payload ?? Array.Empty<byte>();
 
             if (String.IsNullOrEmpty(hostName))
                 throw new Exception("Please set the cartridge host name or address");
@@ -54,22 +57,26 @@ namespace UltiLaunch2
             var address = Dns.GetHostAddresses(hostName).FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork) 
                           ?? throw new Exception($"Can't resolve host name '{hostName}");
 
-            using var client = new TcpClient();
-            client.Connect(address, port);
-
-            using var bw = new BinaryWriter(client.GetStream());
-
-            bw.Write((ushort)cmd);
-            if ((cmd == Command.MOUNT_IMG) || (cmd == Command.RUN_IMG) || (cmd == Command.RUN_CRT))
+            using (var client = new TcpClient())
             {
-                bw.Write((byte)(payload.Length & 0xff));
-                bw.Write((byte)((payload.Length >> 8) & 0xff));
-                bw.Write((byte)((payload.Length >> 16) & 0xff));
-            }
-            else
-                bw.Write((ushort)payload.Length);
+                client.Connect(address, port);
 
-            bw.Write(payload);
+                using (var bw = new BinaryWriter(client.GetStream()))
+                {
+
+                    bw.Write((ushort)cmd);
+                    if ((cmd == Command.MOUNT_IMG) || (cmd == Command.RUN_IMG) || (cmd == Command.RUN_CRT))
+                    {
+                        bw.Write((byte)(payload.Length & 0xff));
+                        bw.Write((byte)((payload.Length >> 8) & 0xff));
+                        bw.Write((byte)((payload.Length >> 16) & 0xff));
+                    }
+                    else
+                        bw.Write((ushort)payload.Length);
+
+                    bw.Write(payload);
+                }
+            }
         }
 
 

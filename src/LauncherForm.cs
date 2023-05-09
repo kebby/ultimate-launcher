@@ -1,15 +1,17 @@
 
 using Microsoft.Win32;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
+using System;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+
 
 namespace UltiLaunch2
 {
     public partial class LauncherForm : Form
     {
         readonly string[] args;
-        readonly Ultimate ult = new();
+        readonly Ultimate ult = new Ultimate();
 
         string currentDir;
         FileSystemWatcher watcher;
@@ -139,9 +141,11 @@ namespace UltiLaunch2
                         EnableRaisingEvents = true
                     };
 
-                    watcher.Created += (s, e) => BeginInvoke(() => tbDirectory_TextChanged(s, e));
-                    watcher.Deleted += (s, e) => BeginInvoke(() => tbDirectory_TextChanged(s, e));
-                    watcher.Renamed += (s, e) => BeginInvoke(() => tbDirectory_TextChanged(s, e));
+                    EventHandler onchanged = (s, e2) => tbDirectory_TextChanged(s, e2);
+
+                    watcher.Created += (s, e2) => BeginInvoke(onchanged);
+                    watcher.Deleted += (s, e2) => BeginInvoke(onchanged);
+                    watcher.Renamed += (s, e2) => BeginInvoke(onchanged);
                 }
             }
 

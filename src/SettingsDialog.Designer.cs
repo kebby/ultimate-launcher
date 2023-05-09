@@ -1,4 +1,8 @@
-﻿namespace UltiLaunch2
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace UltiLaunch2
 {
     partial class SettingsDialog
     {
@@ -80,6 +84,7 @@
             Controls.Add(bOk);
             Controls.Add(tbHostName);
             Controls.Add(label1);
+            Font = new Font("Segoe UI", 9.0f);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "SettingsDialog";
             Text = "Settings";

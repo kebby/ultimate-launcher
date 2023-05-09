@@ -1,4 +1,8 @@
-﻿namespace UltiLaunch2
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace UltiLaunch2
 {
     partial class LauncherForm
     {
@@ -28,7 +32,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherForm));
             bSelectDir = new Button();
             lDirectory = new Label();
             tbDirectory = new TextBox();
@@ -130,8 +133,8 @@
             Controls.Add(tbDirectory);
             Controls.Add(lDirectory);
             Controls.Add(bSelectDir);
+            Font = new Font("Segoe UI", 9.0f);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "LauncherForm";
             SizeGripStyle = SizeGripStyle.Hide;
